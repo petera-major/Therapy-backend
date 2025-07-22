@@ -10,6 +10,7 @@ distro==1.9.0
 exceptiongroup==1.2.2
 filelock==3.18.0
 Flask==3.1.0
+flask-cors==6.0.1
 Flask-SocketIO==5.5.1
 fsspec==2025.5.1
 future @ file:///AppleInternal/Library/BuildRoots/bcce998f-ff34-11ef-9d34-f2a857e00a32/Library/Caches/com.apple.xbs/Sources/python3/future-0.18.2-py3-none-any.whl
