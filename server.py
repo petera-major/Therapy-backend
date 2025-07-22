@@ -45,18 +45,25 @@ def video_response():
     }
 
     response = requests.post("https://api.heygen.com/v1/video.create", json=payload, headers=headers)
-    data = response.json()
+
+    print(" HeyGen create response (raw):", response.text)
+    print(" Status code:", response.status_code)
+
+    try:
+        data = response.json()
+    except ValueError:
+        print(" Failed to parse HeyGen response:", response.text)
+        return jsonify({"error": "Invalid response from HeyGen"}), 500
 
     if "data" not in data or "video_id" not in data["data"]:
         return jsonify({"error": "HeyGen video creation failed"}), 500
 
     video_id = data["data"]["video_id"]
 
-    # Step 2: Poll for video status
     status_url = f"https://api.heygen.com/v1/video.status?video_id={video_id}"
     video_url = None
 
-    for _ in range(20):  # Try for ~60 seconds
+    for _ in range(20):  
         time.sleep(3)
         status_res = requests.get(status_url, headers=headers)
         status_data = status_res.json()
