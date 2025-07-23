@@ -44,7 +44,7 @@ def video_response():
         "Content-Type": "application/json"
     }
 
-    response = requests.post("https://api.heygen.com/v1/video.create", json=payload, headers=headers)
+    response = requests.post("https://api.heygen.com/v1/video/generate", json=payload, headers=headers)
 
     print(" HeyGen create response (raw):", response.text)
     print(" Status code:", response.status_code)
