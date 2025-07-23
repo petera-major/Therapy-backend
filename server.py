@@ -18,7 +18,16 @@ def respond():
         response = client.chat.completions.create(
             model="gpt-4",
             messages=[
-                {"role": "system", "content": "You're a friendly and calming AI therapist."},
+                {
+                    "role": "system",
+                    "content": (
+                        "You are a supportive, calming, and empathetic AI therapist. "
+                        "Speak in a warm and understanding tone, like a trusted friend who genuinely listens. "
+                        "Give thoughtful, detailed, and emotionally intelligent responses. "
+                        "Avoid generic advice. Reflect on what the user says and help them feel heard and validated. "
+                        "Always be encouraging, never judgmental. If they sound unsure or emotional, gently reassure them."
+                    )
+                },
                 {"role": "user", "content": user_text}
             ]
         )
@@ -32,7 +41,7 @@ def respond():
 
 @app.route("/")
 def home():
-    return " TheraBot is running!"
+    return "TheraBot is running!"
 
 if __name__ == "__main__":
     app.run(debug=True)
